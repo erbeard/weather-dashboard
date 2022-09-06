@@ -12,35 +12,40 @@
     <title>Weather Dashboard</title>
 </head>
 
-<body>
+<body class="flex-colomn min-100-vh">
     <header class="hero">
-        <h1>
+        <h1 class="app-title">
             <i class="fas fa-cloud-sun"></i> Weather Dashboard <i class="fas fa-cloud-moon-rain"></i>
         </h1>
 
     </header>
     
-    <main>
-        <div>
-            <h3> Search For A City</h3>
-            <div>
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-sm-12 col-md-4 float-left">
+
+            <div class="card">
+            <h3 class="card-header text-uppercase">Search For A City</h3>
+            <div id="user-form" class="card-body">
                 <input type="text" id="userInput" placeholder="City Name..." />
                 <button id="searchBtn"> Search</button>
             </div>
         </div>
 
         <div class="card-history">
-            <h3>Search History</h3>
+            <h3 class="card-header text-uppercase">Search History</h3>
+        </div>
         </div>
 
-        <div>
-            <h2>Current Weather</h2>
+        <div class="col-12 col-sm-12 col-md-8 float-right">
+            <div>
+            <h2 class="subtitle text-uppercase bg-light">Current Weather</h2>
             <div class="city"></div>
         </div>
 
         <div>
-            <h2>5 Day Forecast</h2>
+            <h2 class="subtitle text-uppercase bg-light">5 Day Forecast</h2>
             <div class="five-day"></div>
+        </div>
         </div>
 
     </main>
