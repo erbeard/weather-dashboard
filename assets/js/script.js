@@ -143,5 +143,39 @@ function getResult(){
     })
 }    
 
+function getInfo() {
+    var currentList =localStorage.getItem("city");
+    if (currentList !== null ){
+        freshList = JSON.parse(currentList);
+        return freshList;
+    } else {
+        freshList = [];
+    }
+    return freshList;
+}
+
+function addInfo (n) {
+    var addedList = getInfo();
+
+    if (historyList.includes(inputCity) === false){
+        addedList.push(n);
+    }
+   
+    localStorage.setItem("city", JSON.stringify(addedList));
+};
+
+function renderInfo () {
+    var historyList = getInfo();
+    for (var i = 0; i < historyList.length; i++) {
+        var inputCity = historyList[i];
+        var searchCity =$("<div>") 
+        searchCity.attr('id',inputCity) 
+        searchCity.text(inputCity) 
+        searchCity.addClass("h4")
+
+        $(".history").append(searchCity)
+    }
+};
+
 renderInfo();
 
