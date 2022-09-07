@@ -1,3 +1,4 @@
+//Collection of user input to display in search history
 function addResult() {
     inputCity = document.getElementById("userInput").value;
     historyList = getInfo();
@@ -14,6 +15,8 @@ function addResult() {
 
 };
 
+
+//Event Listener for search history item
 $(".history").on('click', function(event){
     event.preventDefault();
     $(".subtitle").attr("style","display:inline")
@@ -22,9 +25,12 @@ $(".history").on('click', function(event){
 });
 
 
+//Add Event Listener to search buttion
 document.getElementById("searchBtn").addEventListener("click", addResult);
 document.getElementById("searchBtn").addEventListener('click', getResult);
 
+
+//Collection of results to display including weather conditions, the temperature, the humidity, the wind speed, and the UV index
 function getResult(){   
 
     $(".five-day").empty();
@@ -76,13 +82,13 @@ function getResult(){
             return response.json();
           })
           .then(function (data) {
-            // console.log(data)
             
             weatherIcon= data.current.weather[0].icon;
             imgSrc = "https://openweathermap.org/img/wn/" + weatherIcon + ".png";
             icon.attr('src',imgSrc)
         
             cityName.text(cityCode);
+
             //translate utc to date
             var date = new Date(data.current.dt * 1000);
             dateTime.text("("+ (date.getMonth()+1) + "/" + date.getDate() + "/" + date.getFullYear() + ")");
@@ -109,6 +115,8 @@ function getResult(){
             } else {
                 uvi.attr("style","background-color:purple; color:black; margin-left: 5px")
             }
+
+            //5-Day forcast that displays date, icon of weather conidtions, temperature, and humitity. From Fetch
 
             for (var i=1;i<6;i++){
 
@@ -143,6 +151,7 @@ function getResult(){
     })
 }    
 
+//Get Local Storge Info
 function getInfo() {
     var currentList =localStorage.getItem("city");
     if (currentList !== null ){
@@ -154,6 +163,7 @@ function getInfo() {
     return freshList;
 }
 
+//Add Local Info to Local Storage
 function addInfo (n) {
     var addedList = getInfo();
 
@@ -164,6 +174,8 @@ function addInfo (n) {
     localStorage.setItem("city", JSON.stringify(addedList));
 };
 
+
+//Display History
 function renderInfo () {
     var historyList = getInfo();
     for (var i = 0; i < historyList.length; i++) {
